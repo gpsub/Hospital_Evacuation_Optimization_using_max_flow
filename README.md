@@ -1,2 +1,2 @@
-# Network flow visualization using network flow
+# Network flow visualization using networkx
 Packages used : networkx , pyvis
