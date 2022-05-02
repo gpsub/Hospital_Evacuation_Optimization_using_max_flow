@@ -78,8 +78,21 @@ hospital.add_edge(16,15,capacity=550)
 hospital.add_edge(16,14,capacity=500)
 
 #finalexit
-hospital.add_edge(14,0,capacity=200)
-hospital.add_edge(15,0,capacity=200)
+hospital.add_edge(14,0,capacity=2000)
+hospital.add_edge(15,0,capacity=2000)
+## super source vertex
+hospital.add_edge(20,1,capacity=floor_weight_list[0][0])
+hospital.add_edge(20,4,capacity=floor_weight_list[0][1])
+
+hospital.add_edge(20,5,capacity=floor_weight_list[1][0])
+hospital.add_edge(20,8,capacity=floor_weight_list[1][1])
+
+hospital.add_edge(20,9,capacity=floor_weight_list[2][0])
+hospital.add_edge(20,12,capacity=floor_weight_list[2][1])
+
+hospital.add_edge(20,13,capacity=floor_weight_list[3][0])
+hospital.add_edge(20,16,capacity=floor_weight_list[3][1])
+
 
 
 
@@ -87,7 +100,7 @@ def foo1(x):
     return int(x)
 
 
-flow_value, flow_dict = nx.maximum_flow(hospital,1,0)
+flow_value, flow_dict = nx.maximum_flow(hospital,20,0)
 
 print("Flow value="+ str(flow_value)+"\n\n")
 print("flow dict="+str(flow_dict)+"\n\n")
