@@ -59,7 +59,6 @@ hospital.add_edge(7,10,capacity=200)
 hospital.add_edge(7,11,capacity=200)
 
 
-
 hospital.add_edge(9,10,capacity=350)
 hospital.add_edge(9,11,capacity=300)
 hospital.add_edge(12,10,capacity=350)
@@ -88,9 +87,94 @@ def foo1(x):
     return int(x)
 
 
+flow_value, flow_dict = nx.maximum_flow(hospital,1,0)
+
+print("Flow value="+ str(flow_value)+"\n\n")
+print("flow dict="+str(flow_dict)+"\n\n")
+
+
+output = nx.DiGraph()
+
+output.add_node(0,label='exit',x=175,y=500)
+#floor3
+floor_weight_list = get_floor_weights( calc_loads() ) 
+print(floor_weight_list)
+
+output.add_node(0,label='exit',x=200,y=300)
+output.add_node(1,x=100,y=100)
+output.add_node(2,x=150,y=100)
+output.add_node(3,x=200,y=100)
+output.add_node(4,x=250,y=100)
+#floor2
+output.add_node(5,x=100,y=200)
+output.add_node(6,x=150,y=200)
+output.add_node(7,x=200,y=200)
+output.add_node(8,x=250,y=200)
+#floor1
+output.add_node(9,x=100,y=300)
+output.add_node(10,x=150,y=300)
+output.add_node(11,x=200,y=300)
+output.add_node(12,x=250,y=300)
+#floor0
+output.add_node(13,x=100,y=400)
+output.add_node(14,x=150,y=400)
+output.add_node(15,x=200,y=400)
+output.add_node(16,x=250,y=400)
+
+
+output.add_edge(1,2,weight=int(flow_dict[1][2]))
+output.add_edge(1,3,weight=int(flow_dict[1][3]))
+output.add_edge(4,2,weight=int(flow_dict[4][2]))
+output.add_edge(4,3,weight=int(flow_dict[4][3]))
+
+# exit1
+output.add_edge(2,7,weight=int(flow_dict[2][7]))
+output.add_edge(2,6,weight=int(flow_dict[2][6]))
+
+output.add_edge(3,7,weight=int(flow_dict[3][7]))
+output.add_edge(3,6,weight=int(flow_dict[3][6]))
+
+
+output.add_edge(5,6,weight=int(flow_dict[5][6]))
+output.add_edge(5,7,weight=int(flow_dict[5][7]))
+output.add_edge(8,6,weight=int(flow_dict[8][6]))
+output.add_edge(8,7,weight=int(flow_dict[8][7]))
+
+#exit2
+output.add_edge(6,10,weight=int(flow_dict[6][10]))
+output.add_edge(6,11,weight=int(flow_dict[6][11]))
+
+output.add_edge(7,10,weight=int(flow_dict[7][10]))
+output.add_edge(7,11,weight=int(flow_dict[7][11]))
+
+
+output.add_edge(9,10,weight=int(flow_dict[9][10]))
+output.add_edge(9,11,weight=int(flow_dict[9][11]))
+output.add_edge(12,10,weight=int(flow_dict[12][10]))
+output.add_edge(12,11,weight=int(flow_dict[12][11]))
+
+#exit3
+
+output.add_edge(10,14,weight=int(flow_dict[10][14]))
+output.add_edge(11,15,weight=int(flow_dict[11][15]))
+
+output.add_edge(10,15,weight=int(flow_dict[10][15]))
+output.add_edge(11,14,weight=int(flow_dict[11][14]))
+
+output.add_edge(13,14,weight=int(flow_dict[13][14]))
+output.add_edge(13,15,weight=int(flow_dict[13][15]))
+output.add_edge(16,15,weight=int(flow_dict[16][15]))
+output.add_edge(16,14,weight=int(flow_dict[16][14]))
+
+#finalexit
+output.add_edge(14,0,weight=int(flow_dict[14][0]))
+output.add_edge(15,0,weight=int(flow_dict[15][0]))
+
+
+
 
 nt = Network('800px','800px')
-nt.from_nx(hospital,edge_weight_transf=foo1)
+nt.from_nx(output,edge_weight_transf=foo1)
 nt.toggle_drag_nodes(True)
 nt.toggle_physics(False)
-nt.show("hospital.html")
+nt.show("output.html")
