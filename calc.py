@@ -11,8 +11,7 @@ def calc_loads():
         elif i["gender"] == "F":
             load = i["age"]*0.5+0.5*0.2+i['severity']*2+i['weight']*0.5
         loads.append(load)
-        # print(load)
-        i["load"] = load
+    
     return loads
 
 
@@ -23,9 +22,9 @@ def get_floor_weights(loads):
         sum_a = 0
         sum_b = 0
         for a in range(i,i+10):
-            sum_a += loads[a]
+            sum_a +=loads[a]
         for b in range(i+10,i+20):
-            sum_b += loads[b]
+            sum_b +=loads[b]
         weight_floor.append([sum_a,sum_b])
     # print(weight_floor)
     return weight_floor
@@ -34,7 +33,7 @@ def get_floor_weights(loads):
 if __name__ == "__main__":
     # args = sys.argv[1:]
     # print(args[0])
-    loads = calc_loads()
+    loads= calc_loads()
     get_floor_weights(loads)
 
    

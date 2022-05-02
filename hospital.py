@@ -7,15 +7,17 @@ from calc import calc_loads,get_floor_weights
 hospital = nx.DiGraph()
 
 hospital.add_node(0,label='exit',x=175,y=500)
-#floor3
-floor_weight_list = get_floor_weights( calc_loads() ) 
-print(floor_weight_list)
+#
+loads = calc_loads()
+floor_weight_list = get_floor_weights( loads ) 
+print(str(floor_weight_list))
+avg = sum(loads)/len(loads)
 
 hospital.add_node(0,label='exit',x=200,y=300)
-hospital.add_node(1,x=100,y=100)
-hospital.add_node(2,x=150,y=100)
-hospital.add_node(3,x=200,y=100)
-hospital.add_node(4,x=250,y=100)
+hospital.add_node(1,label="Ward1",x=100,y=100)
+hospital.add_node(2,label="Floor3Exit1"x=150,y=100)
+hospital.add_node(3,label="Floor3Exit2"x=200,y=100)
+hospital.add_node(4,label="Ward2",x=250,y=100)
 #floor2
 hospital.add_node(5,x=100,y=200)
 hospital.add_node(6,x=150,y=200)
@@ -101,11 +103,11 @@ def foo1(x):
 
 
 flow_value, flow_dict = nx.maximum_flow(hospital,20,0)
-
 print("Flow value="+ str(flow_value)+"\n\n")
 print("flow dict="+str(flow_dict)+"\n\n")
-
-
+people = flow_value//avg
+total = len(loads)
+print("\n\n"+str(people)+ " people evacuated out of "+ str(total)+" people in hospital")
 output = nx.DiGraph()
 
 output.add_node(0,label='exit',x=175,y=500)
