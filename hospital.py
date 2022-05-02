@@ -1,9 +1,12 @@
 ## Graph visualization
-from cv2 import HOGDESCRIPTOR_DEFAULT_NLEVELS
+import sys
 import networkx as nx
 from pyvis.network import Network
+from calc import calc_loads,get_floor_weights
+
 hospital = nx.DiGraph()
 
+floor_weight_list = get_floor_weights( calc_loads() ) 
 
 hospital.add_node(0,label='exit',x=200,y=300)
 hospital.add_node(1,x=100,y=100)
