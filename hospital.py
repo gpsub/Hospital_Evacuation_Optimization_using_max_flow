@@ -27,64 +27,67 @@ hospital.add_node(15,x=200,y=400)
 hospital.add_node(16,x=250,y=400)
 
 
-hospital.add_edge(1,2,capacity=100)
-hospital.add_edge(1,3,capacity=80)
-hospital.add_edge(4,2,capacity=80)
-hospital.add_edge(4,3,capacity=100)
+hospital.add_edge(1,2,weight=100)
+hospital.add_edge(1,3,weight=80)
+hospital.add_edge(4,2,weight=80)
+hospital.add_edge(4,3,weight=100)
 
 # exit1
-hospital.add_edge(2,7,capacity=100)
-hospital.add_edge(2,6,capacity=100)
+hospital.add_edge(2,7,weight=100)
+hospital.add_edge(2,6,weight=100)
 
-hospital.add_edge(3,7,capacity=100)
-hospital.add_edge(3,6,capacity=100)
+hospital.add_edge(3,7,weight=100)
+hospital.add_edge(3,6,weight=100)
 
 
-hospital.add_edge(5,6,capacity=220)
-hospital.add_edge(5,7,capacity=200)
-hospital.add_edge(8,6,capacity=220)
-hospital.add_edge(8,7,capacity=200)
+hospital.add_edge(5,6,weight=220)
+hospital.add_edge(5,7,weight=200)
+hospital.add_edge(8,6,weight=220)
+hospital.add_edge(8,7,weight=200)
 
 #exit2
-hospital.add_edge(6,10,capacity=100)
-hospital.add_edge(6,11,capacity=100)
+hospital.add_edge(6,10,weight=100)
+hospital.add_edge(6,11,weight=100)
 
-hospital.add_edge(7,10,capacity=200)
-hospital.add_edge(7,11,capacity=200)
+hospital.add_edge(7,10,weight=200)
+hospital.add_edge(7,11,weight=200)
 
 
 
-hospital.add_edge(9,10,capacity=350)
-hospital.add_edge(9,11,capacity=300)
-hospital.add_edge(12,10,capacity=350)
-hospital.add_edge(12,11,capacity=300)
+hospital.add_edge(9,10,weight=350)
+hospital.add_edge(9,11,weight=300)
+hospital.add_edge(12,10,weight=350)
+hospital.add_edge(12,11,weight=300)
 
 #exit3
 
-hospital.add_edge(10,14,capacity=100)
-hospital.add_edge(11,15,capacity=100)
+hospital.add_edge(10,14,weight=100)
+hospital.add_edge(11,15,weight=100)
 
-hospital.add_edge(10,15,capacity=200)
-hospital.add_edge(11,14,capacity=200)
-
-
+hospital.add_edge(10,15,weight=200)
+hospital.add_edge(11,14,weight=200)
 
 
-hospital.add_edge(13,14,capacity=500)
-hospital.add_edge(13,15,capacity=550)
-hospital.add_edge(16,15,capacity=550)
-hospital.add_edge(16,14,capacity=500)
+
+
+hospital.add_edge(13,14,weight=500)
+hospital.add_edge(13,15,weight=550)
+hospital.add_edge(16,15,weight=550)
+hospital.add_edge(16,14,weight=500)
 
 #finalexit
-hospital.add_edge(14,0,capacity=200)
-hospital.add_edge(15,0,capacity=200)
+hospital.add_edge(14,0,weight=200)
+hospital.add_edge(15,0,weight=200)
 
 
+
+def foo1(x):
+    return int(x)
 
 
 
 nt = Network('800px','800px')
-nt.from_nx(hospital)
+nt.from_nx(hospital,edge_weight_transf=foo1)
 nt.toggle_drag_nodes(True)
 nt.toggle_physics(False)
 nt.show("hospital.html")
